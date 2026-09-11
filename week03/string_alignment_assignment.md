@@ -18,8 +18,8 @@ That observation gave us a recurrence for $P(i,j)$, the cost of optimally
 aligning the length-$i$ prefix of $X$ with the length-$j$ prefix of $Y$:
 
 $$
-P(i,j) = \min \left \{ P(i-1,j-1) + a_{x_{i-1}\,y_{j-1}},\quad
-P(i-1,j)+a_{\text{gap}},\quad P(i,j-1)+a_{\text{gap}} \right \}
+P(i,j) = \min \left ( P(i-1,j-1) + a_{x_{i-1}\,y_{j-1}},\quad
+P(i-1,j)+a_{\text{gap}},\quad P(i,j-1)+a_{\text{gap}} \right )
 $$
 
 with base cases $P(0,0) = 0$ and $P(i,j) = (i+j)\times a_{\text{gap}}$ when

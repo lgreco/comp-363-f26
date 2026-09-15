@@ -38,11 +38,11 @@ We can keep scaling problems down, resulting to a seemingly endless and useless 
 $$
 \begin{align}
 T(n) = r^L \, T\left(\frac{n}{c^{L}}\right )
-     + r^{L-1} \, f \left(\frac{n}{c^{L-1}}\right )
-     + r^{L-2} \, f \left(\frac{n}{c^{L-2}}\right )
+     + r^{L-1} \ f \left(\frac{n}{c^{L-1}}\right )
+     + r^{L-2} \ f \left(\frac{n}{c^{L-2}}\right )
      + \ldots
-     + r^{2} \, f \left(\frac{n}{c^{2}}\right )
-     + r^1 \, f \left(\frac{n}{c^1}\right )
-     + r^{0} \, f \left(\frac{n}{c^{0}}\right )
+     + r^{2} \ f \left(\frac{n}{c^{2}}\right )
+     + r^1 \ f \left(\frac{n}{c^1}\right )
+     + r^{0} \ f \left(\frac{n}{c^{0}}\right )
 \end{align}
 $$

@@ -36,13 +36,47 @@ $$
 We can keep scaling problems down, resulting to a seemingly endless and useless expression:
 
 $$
-\begin{align}
-T(n) = r^L \, T\left(\frac{n}{c^{L}}\right )
+\begin{align*}
+T(n) & = r^L \ T\left(\frac{n}{c^{L}}\right )
      + r^{L-1} \ f \left(\frac{n}{c^{L-1}}\right )
      + r^{L-2} \ f \left(\frac{n}{c^{L-2}}\right )
      + \ldots
      + r^{2} \ f \left(\frac{n}{c^{2}}\right )
      + r^1 \ f \left(\frac{n}{c^1}\right )
-     + r^{0} \ f \left(\frac{n}{c^{0}}\right )
-\end{align}
+     + r^{0} \ f \left(\frac{n}{c^{0}}\right ) \\ \\
+     & =  r^L \ T\left(\frac{n}{c^{L}}\right ) 
+       + \sum_{k=0}^{L-1}r^k\ f \left(\frac{n}{c^{k}}\right ) 
+\end{align*}
 $$
+
+This is still an endless expression, so let's find when it stops. As we are scaling the problems by a factor $1/c$ at each iteration, at some point we reach a subproblem so small that it cannot be scaled any further. For example, in *mergesort* we keep dividing an array into halves until we end up with a bunch of single element arrays that can no longer be divided. In mathematical terms 
+$T\left(\dfrac{n}{c^{L}}\right )=T(1)$. Therefore 
+ $\dfrac{n}{c^L}=1$
+ and $L=\log_c n$. And so we can write the total time as
+
+$$
+\begin{align*}
+T(n) & 
+     & =  r^L \ T(1) 
+       + \sum_{k=0}^{L-1}r^k\ f \left(\frac{n}{c^{k}}\right ) 
+\end{align*}
+$$
+
+Knowning that in general $T(n) = T(n/c) + f(n)$ and also that $T(1)$ cannot be scaled further, i.e., $T(1/c) = 0$, we have $T(1) = f(1)$ and substituting above,
+
+
+
+$$
+\begin{align*}
+T(n)  
+     & =  r^L \ f(1) 
+       + \sum_{k=0}^{L-1}r^k\ f \left(\frac{n}{c^{k}}\right ) && (\text{remember that}\ 1=\frac{n}{c^L}) \\
+         
+     & =  r^L \ f\left(\frac{n}{c^L}
+     \right) 
+       + \sum_{k=0}^{L-1}r^k\ f \left(\frac{n}{c^{k}}\right )  && (\text{wrap the first term into the sum})  \\
+     & =  \sum_{k=0}^{L}r^k\ f \left(\frac{n}{c^{k}}\right )
+\end{align*}
+$$
+
+Now we have an expression that is no longer endless (it has $1+\log_cn$ terms), but still looks useless. Let's find some good use for it.

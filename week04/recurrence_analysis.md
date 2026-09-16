@@ -6,7 +6,7 @@ $$
 T(n) = r\, T\left (\frac{n}{c} \right) + f(n)
 $$
 
-Here $f(n)
+Here $f(n)$ is a fixed cost associated with the scaling down of the problem and other related operations. We do not quite know the cost of these operations but it is reasonable to *assume* that $f(n)\in\mathcal O(n^d)$ and for that matter, $f(n)=n^d$.
 
 We can also break a problem of size $n/c$ into $r$ smaller problems, scaled down by $1/c$ and find the time it takes to solve them.
 
@@ -79,4 +79,30 @@ T(n)
 \end{align*}
 $$
 
-Now we have an expression that is no longer endless (it has $1+\log_cn$ terms), but still looks useless. Let's find some good use for it.
+Now we have an expression that is no longer endless (it has $1+\log_cn$ terms), but still looks useless. Let's find some good use for it, by considering three distinct scenarios for its terms $r^k\ f \left(\frac{n}{c^{k}}\right )$
+
+## Terms are equal-ish
+
+This scenario assumes
+
+$$
+r^0\ f \left(\frac{n}{c^{0}}\right ) = r^1\ f \left(\frac{n}{c^{1}}\right ) = \ldots = r^L\ f \left(\frac{n}{c^{L}}\right )
+$$
+
+## Terms are increasing
+
+$$
+r^0\ f \left(\frac{n}{c^{0}}\right ) > r^1\ f \left(\frac{n}{c^{1}}\right ) > \ldots > r^L\ f \left(\frac{n}{c^{L}}\right )
+$$
+
+## Terms are decreasing
+
+$$
+r^0\ f \left(\frac{n}{c^{0}}\right ) < r^1\ f \left(\frac{n}{c^{1}}\right ) < \ldots < r^L\ f \left(\frac{n}{c^{L}}\right )
+$$
+
+## The Master Theorem
+
+## Multiplication
+
+Consider two integer numbers $x, y$ each with $n$ digits, where is a power of two, $n=2^p$. Their product $xy$ is also an integer number with $2n-1$ or $2n$ digits.

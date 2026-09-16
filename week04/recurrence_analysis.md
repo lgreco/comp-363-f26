@@ -105,4 +105,74 @@ $$
 
 ## Multiplication
 
-Consider two integer numbers $x, y$ each with $n$ digits, where is a power of two, $n=2^p$. Their product $xy$ is also an integer number with $2n-1$ or $2n$ digits.
+Consider two integer numbers $x, y$ each with $n$ digits, where is a power of two, $n=2^p$. Their product $xy$ is also an integer number with $2n-1$ or $2n$ digits. If the numbers are sufficiently large, a computer may not be able to represent them using internal arithmetic. And yet programming languages like Python and Java routinely handle numbers much larger than what they can represent internally. How?
+
+Let's assume that we have a computer for which $x=1234$ and $y=5678$ are "large" numbers. Such computers where the state of the art in the 1980s, using 8-bit processor whose internal integer arithmetic only covers numbers in the interval $[-128,127]$.
+
+The numbers can be split into left and right halves as
+
+$$
+\begin{align*}
+x & = 12 \times 10^2 + 34 \times 10^0 \\
+y & = 56 \times 10^2 + 78 \times 10^0
+\end{align*}
+$$
+and their product can be rewritten as
+
+
+$$
+\begin{align*}
+xy & = \left ( 12 \times 10^2 + 34 \times 10^0 \right ) \times 
+       \left ( 56 \times 10^2 + 78 \times 10^0 \right ) \\
+   & = (12)\times(56)\times 10^4 + \left [ (12)\times(78)+(34)\times(56) \right]\times 10^2 + (34)\times (78)\times 10^0
+\end{align*}
+$$
+
+Multiplications by a power of 10 are trivial because all we need to do is shift the digits to the left by as many places as the exponent of 10. The remaining products can be decomposed in similar fashion. For example
+
+
+$$
+\begin{align*}
+(34) \times (78) & = (3\times 10^1 + 4\times 10^0) \times (7\times 10^1 + 8\times 10^0) \\
+                 & = (3)\times(7)\times 10^2 + [(3)\times (8)+(4)\times(7)]\times 10^1 + (4)\times(8)\times 10^0\\
+                 & = 21\times 10^2 + (24+28)\times 10^1 + 32\times 10^0 \\
+                 & = 2100 +520 + 32 = \mathbf{2652}\\
+\end{align*}
+$$
+In the step above, all products are single-digit multiplications and therefore trivial to compute.
+
+In general, two numbers $x,y$ with $n$ digits each can be written as
+
+
+$$
+\begin{align*}
+x & = a \times 10^{n/2} + b \\
+y & = c \times 10^{n/2} + d
+\end{align*}
+$$
+Assuming that $n=2^p$ (a power of two), then $a,b$ are the left and right halves of $x$, and $c,d$ the left and right halves of $y$. Using this representation, the product can be written as
+
+$$
+\begin{align*}
+xy & = (a \times 10^{n/2} + b) \times (c \times 10^{n/2} + d) \\
+   & = ac\times 10^n+(ad+bc)\times 10^{n/2} + bd
+\end{align*}
+$$
+
+The products above, $ac$, $ad$, $bc$, and $bd$ can be further decomposed using the similar technique and we can continue spliting the operants in halves until we end up with the simple single digit multiplications as in the example earlier.
+
+Because $x$ and $y$ are big numbers than cannot be represented as `int` data types, we opt to represent them as strings; for example
+
+```python
+x: str = '1234'
+y: str = '5678'
+```
+Thus, splitting them in left and right halves becomes a trivial string slicing assignment.
+```python
+n = len(x)    # assume len(x) == len(y) > 0
+mid = n // 2  # remember n is power of 2
+a = x[0:mid]  # left half of x
+b = x[mid:n]  # right half of x
+c = y[0:mid]  # left half of y
+d = y[mid:n]  # right half of y
+```

@@ -79,7 +79,7 @@ T(n)
 \end{align*}
 $$
 
-Now we have an expression that is no longer endless (it has $1+\log_cn$ terms), but still looks useless. Let's find some good use for it, by considering three distinct scenarios for its terms $r^k\ f \left(\frac{n}{c^{k}}\right )$
+Now we have an expression that is no longer endless (it has $1+\log_cn$ terms), but still looks useless. Let's find some good use for it, by considering three distinct scenarios for its terms $r^k\ f \left(\dfrac{n}{c^{k}}\right )$
 
 ## Terms are equal-ish
 
@@ -89,10 +89,58 @@ $$
 r^0\ f \left(\frac{n}{c^{0}}\right ) = r^1\ f \left(\frac{n}{c^{1}}\right ) = \ldots = r^L\ f \left(\frac{n}{c^{L}}\right )
 $$
 
+Focusing on the two first terms, gives us the condition under which the terms of the sum are equal.
+
+$$
+\begin{align*}
+r^0\ f \left(\frac{n}{c^{0}}\right ) & = r^1\ f \left(\frac{n}{c^{1}}\right ) && (\text{simplify exponents, e.g.}\ r^0=1) \\
+f(n) & = rf \left(\frac{n}{c}\right ) && (\text{use}\ f(n)=n^d) \\
+n^d & = r \left(\frac{n}{c}\right )^d  && (\text{cancel out terms on both sides}) \\
+1 & = \frac{r}{c^d} && (\text{multiply both sides by}\ c^d) \\ 
+r &= c^d
+\end{align*}
+$$
+
+If this condition $r=c^d$ is observed, then all terms of the sum are the same and therefore,
+
+$$
+\begin{align*}
+T(n) & = \sum_{k=0}^{L}r^k\ f \left(\frac{n}{c^{k}}\right ) && (\text{replace all terms with first term } r^0\ f \left(\frac{n}{c^{0}}\right )) \\
+     & = \sum_{k=0}^{L} f \left(n\right )&& (\text{sum has } L+1\text{ terms}) \\
+     & = (L+1) f(n) && (L+1\approx L\text{ for large }L) \\
+     & = Lf(n) && (\text{switch terms around and replace } f) \\
+     & = n^d L && (\text{substitute } L=\log_cn) \\
+     & = n^d \log_c n
+\end{align*}
+$$
+
 ## Terms are increasing
 
 $$
 r^0\ f \left(\frac{n}{c^{0}}\right ) > r^1\ f \left(\frac{n}{c^{1}}\right ) > \ldots > r^L\ f \left(\frac{n}{c^{L}}\right )
+$$
+
+In this scenario, the dominant term of the sum is the last one. For sufficiently large values of $n$, we can argue that
+
+$$
+\begin{align*}
+T(n) & \approx r^L\ f \left(\frac{n}{c^{L}}\right ) && (n/c^L=1) \\
+     & = r^{L}f(1) && (f(1)=1,\  L=\log_cn) \\
+     & = r^{\log_cn} && (\text{use change-of-base }\log_cn =\frac{\ln n}{\ln c}) \\
+     & = n^{\log_cr}
+\end{align*}
+$$
+
+The condition for this situation can be derived by the first two terms of the sum, for which we know
+
+$$
+\begin{align*}
+r^0\ f \left(\frac{n}{c^{0}}\right ) & > r^1\ f \left(\frac{n}{c^{1}}\right ) \\
+f(n) & > r f \left(\frac{n}{c^{1}}\right ) \\
+n^d & > r\left(\frac{n}{c^{1}}\right )^d \\
+1 & > \frac{r}{c^{d}} \\
+r & < c^d
+\end{align*}
 $$
 
 ## Terms are decreasing
@@ -101,9 +149,40 @@ $$
 r^0\ f \left(\frac{n}{c^{0}}\right ) < r^1\ f \left(\frac{n}{c^{1}}\right ) < \ldots < r^L\ f \left(\frac{n}{c^{L}}\right )
 $$
 
+The dominant term in this scenario is the first term and we can write
+
+$$
+\begin{align*}
+T(n) & \approx r^0\ f \left(\frac{n}{c^{0}}\right ) = f(n) = n^d
+\end{align*}
+$$
+
+The condition for this scenario is obtained from
+
+$$
+\begin{align*}
+r^0\ f \left(\frac{n}{c^{0}}\right ) & < r^1\ f \left(\frac{n}{c^{1}}\right ) \\
+n^d & < r\left(\frac{n}{c}\right )^d \\
+1 <\frac{r}{c^d} \\
+r > c^d
+\end{align*}
+$$
+
+
+
 ## The Master Theorem
 
-## Multiplication
+The three cases above comprise the *Master Theorem* for divide and conquer problem whose timing is a recurrence of the form $T(n)=rT(n/c)+f(n)$, with $f(n)=n^d$. If we know the values $r$, $c$, and $d$, we can determine the actual time as
+
+$$
+T(n) \in \begin{cases} 
+\mathcal O \left( n^d\log_cn\ \right ) & \text{when } & r & = & c^d \\
+\mathcal O \left( n^{\log_cr} \right ) & \text{when } & r & < & c^d \\
+\mathcal O \left( n^d         \right ) & \text{when } & r & > & c^d
+\end{cases}
+$$
+
+# Multiplication
 
 Consider two integer numbers $x, y$ each with $n$ digits, where is a power of two, $n=2^p$. Their product $xy$ is also an integer number with $2n-1$ or $2n$ digits. If the numbers are sufficiently large, a computer may not be able to represent them using internal arithmetic. And yet programming languages like Python and Java routinely handle numbers much larger than what they can represent internally. How?
 

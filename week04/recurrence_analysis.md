@@ -225,20 +225,20 @@ In general, two numbers $x,y$ with $n$ digits each can be written as
 
 $$
 \begin{align*}
-x & = a \times 10^{n/2} + b \\
-y & = c \times 10^{n/2} + d
+x & = A \times 10^{n/2} + B \\
+y & = C \times 10^{n/2} + D
 \end{align*}
 $$
 Assuming that $n=2^p$ (a power of two), then $a,b$ are the left and right halves of $x$, and $c,d$ the left and right halves of $y$. Using this representation, the product can be written as
 
 $$
 \begin{align*}
-xy & = (a \times 10^{n/2} + b) \times (c \times 10^{n/2} + d) \\
-   & = ac\times 10^n+(ad+bc)\times 10^{n/2} + bd
+xy & = (A \times 10^{n/2} + B) \times (C \times 10^{n/2} + D) \\
+   & = AC\times 10^n+(BC+AD)\times 10^{n/2} + DB
 \end{align*}
 $$
 
-The products above, $ac$, $ad$, $bc$, and $bd$ can be further decomposed using the similar technique and we can continue spliting the operants in halves until we end up with the simple single digit multiplications as in the example earlier.
+The products above, $AC$, $AD$, $BC$, and $BD$ can be further decomposed using the similar technique and we can continue spliting the operants in halves until we end up with the simple single digit multiplications as in the example earlier.
 
 Because $x$ and $y$ are big numbers than cannot be represented as `int` data types, we opt to represent them as strings; for example
 
@@ -250,8 +250,51 @@ Thus, splitting them in left and right halves becomes a trivial string slicing a
 ```python
 n = len(x)    # assume len(x) == len(y) > 0
 mid = n // 2  # remember n is power of 2
-a = x[0:mid]  # left half of x
-b = x[mid:n]  # right half of x
-c = y[0:mid]  # left half of y
-d = y[mid:n]  # right half of y
+A = x[0:mid]  # left half of x
+B = x[mid:n]  # right half of x
+C = y[0:mid]  # left half of y
+D = y[mid:n]  # right half of y
 ```
+
+Decomposing the product of two numbers $n$ digits long to four products of two numbers, $n/2$ digits long, implies a recurrence of the form
+
+$$
+T(n) = 4T\left (\frac{n}{2} \right ) +f(n)
+$$
+
+Here, $r=4$ and $c=2$. In order to apply the Master Theorem, first we need to establish that $f(n)=n^d$ and then estimate the value of $d$.
+
+In the product
+$$
+\begin{align*}
+xy & = AC\times 10^n+(BC+AD)\times 10^{n/2} + DB
+\end{align*}
+$$
+we split $x$ and $y$ into halves. Assuming these numbers are represented by strings of length $n$, the spliting can be done as simply as:
+```python
+left_half = ''
+right_half = ''
+n = len(string)
+mid = n//2
+for i in range(n):
+     digit = string[i]
+     if i < mid:
+          left_half += digit
+     else:
+          right_half += digit
+```
+Of course, in real Python this process is done with `string[:mid]` and `string[mid:]` slicing. But regardless of implementation, the slicing requires as many steps as the length of the string and therefore, $f(n)=n$. So, $d=1$.
+
+For this recurrence, we have $r > c^d$ because $4>2^1$ and from the Master Theorem we get that $T(n)\in\mathcal O(n^{\log_cr})= \mathcal O(n^{\log_24}) = \mathcal O(n^{2})$
+
+A simple algebraic manipulation can lead to better performance. In 1960, while attending a workshop on computational complexity, Anatoly Karatsuba challenged his professor's assumptions about recursive multiplication. His professor was Andrey Kolmogorov, one of the most influential mathematicians of the 20th century. Kolmogorov believed that $\mathcal O (n^2)$ was as good as it gets for multiplication.
+
+Karatsuba proposed that instead of splitting the product into four subproblems, it could be done with three:
+$$
+\begin{align*}
+xy & = AC\times 10^n+{\color{maroon}{(BC+AD)}}\times 10^{n/2} + DB && (\text{classic solution}) \\
+   & = AC\times 10^n+{\color{maroon}{((A+B)(C+D)-BC-AD)}}\times 10^{n/2} + DB && (\text{Karatsuba's solution})
+\end{align*}
+$$
+It is trivial to show that $(A+B)(C+D)-AC-BD=BC+AD$. And by using this simple substitution Karatsuba reduced the problem's $r$ from 4 to 3. We are still in the $r>c^d$ part of the Master Theorem, and the time it takes for Karatsuba's product to compute is $\mathcal O (n^{\log_{{\color{red}3}}2})$
+

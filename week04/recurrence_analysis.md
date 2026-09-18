@@ -298,5 +298,6 @@ xy & = AC\times 10^n+{\color{maroon}{(BC+AD)}}\times 10^{n/2} + DB && (\text{cla
 \end{align*}
 $$
 
-It is trivial to show that $(A+B)(C+D)-AC-BD=BC+AD$. And by using this simple substitution Karatsuba reduced the problem's $r$ from 4 to 3. We are still in the $r>c^d$ part of the Master Theorem, and the time it takes for Karatsuba's product to compute is $\mathcal O (n^{\log_{{\color{red}3}}2})$
+It is trivial to show that $(A+B)(C+D)-AC-BD=BC+AD$. And by using this simple substitution Karatsuba reduced the problem's $r$ from 4 to 3. We are still in the $r>c^d$ part of the Master Theorem, and the time it takes for Karatsuba's product to compute is $\mathcal O (n^{\log_{2}{{\color{red}3}}}) = \mathcal O (n^{{1.58}} )$. 
 
+Going from $n^2$ to $n^{1.58}$ may not seem a big deal, except it is. Consider two numbers with 1024 digits each. Using the classic multiplication, the time to complete the operation is $\mathcal O(1024^2)=\mathcal O(1,048,576)$. Using Karatsuba's technique, the required time is  $\mathcal O(1024^{1.58})=\mathcal O(57,052)$. That's a significant improvement.

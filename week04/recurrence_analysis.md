@@ -64,16 +64,10 @@ $$
 
 Knowning that in general $T(n) = T(n/c) + f(n)$ and also that $T(1)$ cannot be scaled further, i.e., $T(1/c) = 0$, we have $T(1) = f(1)$ and substituting above,
 
-
-
 $$
 \begin{align*}
-T(n)  
-& =  r^L \ f(1) 
-+ \sum_{k=0}^{L-1}r^k\ f \left(\frac{n}{c^{k}}\right ) && (\text{remember that}\ 1=\frac{n}{c^L}) \\   
-& =  r^L \ f\left(\frac{n}{c^L}
-\right) 
-+ \sum_{k=0}^{L-1}r^k\ f \left(\frac{n}{c^{k}}\right )  && (\text{wrap the first term into the sum}) \\
+T(n)  & =  r^L \ f(1) + \sum_{k=0}^{L-1}r^k\ f \left(\frac{n}{c^{k}}\right ) && (\text{remember that}\ 1=\frac{n}{c^L}) \\   
+& =  r^L \ f\left(\frac{n}{c^L}\right) + \sum_{k=0}^{L-1}r^k\ f \left(\frac{n}{c^{k}}\right )  && (\text{wrap the first term into the sum}) \\
  & =  \sum_{k=0}^{L}r^k\ f \left(\frac{n}{c^{k}}\right )
 \end{align*}
 $$

@@ -69,13 +69,12 @@ Knowning that in general $T(n) = T(n/c) + f(n)$ and also that $T(1)$ cannot be s
 $$
 \begin{align*}
 T(n)  
-     & =  r^L \ f(1) 
-       + \sum_{k=0}^{L-1}r^k\ f \left(\frac{n}{c^{k}}\right ) && (\text{remember that}\ 1=\frac{n}{c^L}) \\
-         
-     & =  r^L \ f\left(\frac{n}{c^L}
-     \right) 
-       + \sum_{k=0}^{L-1}r^k\ f \left(\frac{n}{c^{k}}\right )  && (\text{wrap the first term into the sum})  \\
-     & =  \sum_{k=0}^{L}r^k\ f \left(\frac{n}{c^{k}}\right )
+& =  r^L \ f(1) 
++ \sum_{k=0}^{L-1}r^k\ f \left(\frac{n}{c^{k}}\right ) && (\text{remember that}\ 1=\frac{n}{c^L}) \\   
+& =  r^L \ f\left(\frac{n}{c^L}
+\right) 
++ \sum_{k=0}^{L-1}r^k\ f \left(\frac{n}{c^{k}}\right )  && (\text{wrap the first term into the sum}) \\
+ & =  \sum_{k=0}^{L}r^k\ f \left(\frac{n}{c^{k}}\right )
 \end{align*}
 $$
 

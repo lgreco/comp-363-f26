@@ -86,11 +86,11 @@ Focusing on the two first terms, gives us the condition under which the terms of
 
 $$
 \begin{align*}
-r^0\ f \left(\frac{n}{c^{0}}\right ) & = r^1\ f \left(\frac{n}{c^{1}}\right ) && (\text{simplify exponents, e.g.}\ r^0=1) \\
-f(n) & = rf \left(\frac{n}{c}\right ) && (\text{use}\ f(n)=n^d) \\
-n^d & = r \left(\frac{n}{c}\right )^d  && (\text{cancel out terms on both sides}) \\
-1 & = \frac{r}{c^d} && (\text{multiply both sides by}\ c^d) \\ 
-r &= c^d
+&& r^0\ f \left(\frac{n}{c^{0}}\right ) & = r^1\ f \left(\frac{n}{c^{1}}\right ) && (\text{simplify exponents, e.g.}\ r^0=1) \\
+&& f(n) & = rf \left(\frac{n}{c}\right ) && (\text{use}\ f(n)=n^d) \\
+&& n^d & = r \left(\frac{n}{c}\right )^d  && (\text{cancel out terms on both sides}) \\
+&& 1 & = \frac{r}{c^d} && (\text{multiply both sides by}\ c^d) \\ 
+&& r &= c^d
 \end{align*}
 $$
 

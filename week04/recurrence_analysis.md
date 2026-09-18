@@ -290,11 +290,13 @@ For this recurrence, we have $r > c^d$ because $4>2^1$ and from the Master Theor
 A simple algebraic manipulation can lead to better performance. In 1960, while attending a workshop on computational complexity, Anatoly Karatsuba challenged his professor's assumptions about recursive multiplication. His professor was Andrey Kolmogorov, one of the most influential mathematicians of the 20th century. Kolmogorov believed that $\mathcal O (n^2)$ was as good as it gets for multiplication.
 
 Karatsuba proposed that instead of splitting the product into four subproblems, it could be done with three:
+
 $$
 \begin{align*}
 xy & = AC\times 10^n+{\color{maroon}{(BC+AD)}}\times 10^{n/2} + DB && (\text{classic solution}) \\
    & = AC\times 10^n+{\color{maroon}{((A+B)(C+D)-BC-AD)}}\times 10^{n/2} + DB && (\text{Karatsuba's solution})
 \end{align*}
 $$
+
 It is trivial to show that $(A+B)(C+D)-AC-BD=BC+AD$. And by using this simple substitution Karatsuba reduced the problem's $r$ from 4 to 3. We are still in the $r>c^d$ part of the Master Theorem, and the time it takes for Karatsuba's product to compute is $\mathcal O (n^{\log_{{\color{red}3}}2})$
 

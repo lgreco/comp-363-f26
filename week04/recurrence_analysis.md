@@ -3,7 +3,7 @@
 In divide & conquer problems, $T(n)$ is the time required to solve a problem of size $n$. By breaking the problem into $r$ smaller problems scaled by $1/c$, we can express the solution time as
 
 $$
-T(n) = r\, T\left (\frac{n}{c} \right) + f(n)
+T(n) = r\  T\left (\frac{n}{c} \right) + f(n)
 $$
 
 Here $f(n)$ is a fixed cost associated with the scaling down of the problem and other related operations. We do not quite know the cost of these operations but it is reasonable to *assume* that $f(n)\in\mathcal O(n^d)$ and for that matter, $f(n)=n^d$.
@@ -18,8 +18,8 @@ Substituting for $T(n/c)$ in the expression for $T(n)$ gives us
 
 $$
 \begin{align}
-T(n) & = r\, \left [ rT \left (\frac{n}{c^2} \right) + f\left (\frac{n}{c} \right) \right ] + f(n) \\
-     & = r^2\,T \left (\frac{n}{c^2} \right) + r\,f\left (\frac{n}{c} \right) + f(n)
+T(n) & = r\  \left [ rT \left (\frac{n}{c^2} \right) + f\left (\frac{n}{c} \right) \right ] + f(n) \\
+     & = r^2\ T \left (\frac{n}{c^2} \right) + r\ f\left (\frac{n}{c} \right) + f(n)
 \end{align}
 $$
 
@@ -27,9 +27,9 @@ In the expression above we can reevaluate $T \left ({n}/{c^2} \right)$ in terms 
 
 $$
 \begin{align}
-T(n) & = r^2\,T \left (\frac{n}{c^2} \right) + r\,f\left (\frac{n}{c} \right) + f(n) \\
-     & = r^2 \left[ rT \left (\frac{n}{c^3} \right) + f \left (\frac{n}{c^2} \right) \right ] + r\,f\left (\frac{n}{c} \right) + f(n) \\
-     & = r^3 T \left (\frac{n}{c^3} \right) + r^2 f \left (\frac{n}{c^2} \right)  + r\,f\left (\frac{n}{c} \right) + f(n) 
+T(n) & = r^2\ T \left (\frac{n}{c^2} \right) + r\ f\left (\frac{n}{c} \right) + f(n) \\
+     & = r^2 \left[ rT \left (\frac{n}{c^3} \right) + f \left (\frac{n}{c^2} \right) \right ] + r\ f\left (\frac{n}{c} \right) + f(n) \\
+     & = r^3 T \left (\frac{n}{c^3} \right) + r^2 f \left (\frac{n}{c^2} \right)  + r\ f\left (\frac{n}{c} \right) + f(n) 
 \end{align}
 $$
 

@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+# Price list from class: match 0, mismatch 2, gap 1. compute_penalty() takes
+# a and a_gap as callables (rather than hardcoding these values into the
+# recurrence) so the same function works with any price list a caller wants.
 GAP_PENALTY = 1  # Penalty for introducing a gap
 MISMATCH_PENALTY = 2  # Penalty for a mismatch
 MATCH_PENALTY = 0  # No penalty for a match

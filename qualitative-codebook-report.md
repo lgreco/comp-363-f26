@@ -1,6 +1,11 @@
-# COMP 363 (Fall 2026): Proposed Codebook for Coding Lecture Transcripts
+# Proposed Codebook for Coding Lecture Transcripts
 
-*Prepared 2026-11-18 from a full read of the course's lecture transcripts. Codes are grounded in passages that actually occur; every example cites the lecture date.*
+*Prepared 2026-11-18 from a full read of lecture transcripts for COMP 363. Codes are grounded in passages that actually occur; every example cites the lecture date.*
+
+The actual prompt I gave Claude was:
+
+>  Read the actual transcipts for comp363 and propose category codes for quantitative research analysis. The idea is to
+  tag different parts of the lecture with codes like "humor", "cs history", "back in my day reflection", etc.
 
 ---
 
@@ -11,7 +16,7 @@
 | Lectures scanned | **32** transcripts (2026-08-31 → 2026-11-18); **31 usable** (2026-09-04 is truncated at 364 words) |
 | Total words | **141,451** (mean ≈ 4,400 per lecture; shortest full lecture ≈ 3,200) |
 | Estimated speaking time | **≈ 16–18 hours** of instructor speech, at 130–150 words/minute (≈ 16.8 h at 140 wpm) |
-| Scheduled class time | ≈ 26.7 hours (32 × 50-minute MWF meetings). The gap reflects whiteboard writing, student talk (not transcribed), wait time, and roll call |
+| Class time | ≈ 26.7 hours (32 × 50-minute MWF meetings). The gap reflects whiteboard writing, student talk (not transcribed), wait time, and roll call |
 | Time to complete the analysis | **≈ 4 min 46 s** wall-clock, from the request (17:35:29 UTC) to the delivered codebook (17:40:15 UTC), per the session log |
 | Approximate API-equivalent cost | **≈ $3.25** (see §7) |
 

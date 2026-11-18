@@ -38,7 +38,7 @@ The actual prompt I gave Claude was:
 
 | Code | Definition | Include / exclude | Example |
 |---|---|---|---|
-| `HUM-SELF` | Humor aimed at yourself | Excludes self-disclosure that isn't meant to be funny (→ `PERS-*`) | "men cannot count and they have me teaching computer science theory" (09-11); "best Greek professor… worst Greek professor… because I'm the only one" (08-31) |
+| `HUM-SELF` | Humor aimed at yourself | Excludes self-disclosure that isn't meant to be funny (→ `PERS-*`) | "I cannot count and they have me teaching computer science theory" (09-11); "best Greek professor… worst Greek professor… because I'm the only one" (08-31) |
 | `HUM-TEASE` | Teasing named or present students, or colleagues | Double-code `EX-NAMED` when a student is named | "assuming that Kevin possesses a modicum of intelligence" (09-14); "your texting sucks. LOL." (11-13) |
 | `HUM-TRANSGRESS` | Mock-illicit, violent or dark jokes | Includes mock disclaimers that follow such a joke | slashing tires, blackmail (09-25); "blow us to kingdom come" (11-04); electric-shock bracelets (11-09) |
 | `HUM-RUNBIT` | Callback to a recurring joke | Record the bit ID as an attribute (see §4) | "take it up with Giuseppe" (08-31) |
